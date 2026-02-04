@@ -39,3 +39,5 @@ for bar in bars:
 plt.tight_layout()
 plt.savefig("inflation_rates.png", dpi=300)
 plt.show()
+![Countries with Highest Inflation Rates](inflation_rates.png)
+
