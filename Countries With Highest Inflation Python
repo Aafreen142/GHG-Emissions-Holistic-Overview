@@ -1,0 +1,41 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Data (from your CSV)
+data = {
+    "Country": [
+        "Nigeria", "Mongolia", "Equatorial Guinea", "Yemen", "Angola",
+        "Argentina", "Sri Lanka", "Kazakhstan", "Ghana", "Algeria"
+    ],
+    "Inflation_Rate_Percent": [100, 85, 60, 45, 40, 30, 25, 22, 20, 18]
+}
+
+df = pd.DataFrame(data)
+
+# Sort by inflation rate (optional, but looks nicer)
+df = df.sort_values("Inflation_Rate_Percent", ascending=False)
+
+plt.figure(figsize=(10, 6))
+bars = plt.bar(df["Country"], df["Inflation_Rate_Percent"], color="#d95f02")
+
+plt.title("Countries with Highest Inflation Rates (%)", fontsize=14)
+plt.xlabel("Country", fontsize=12)
+plt.ylabel("Inflation Rate (%)", fontsize=12)
+plt.xticks(rotation=45, ha="right")
+plt.grid(axis="y", linestyle="--", alpha=0.4)
+
+# Add labels on top of bars
+for bar in bars:
+    height = bar.get_height()
+    plt.text(
+        bar.get_x() + bar.get_width() / 2,
+        height + 1,
+        f"{height}%",
+        ha="center",
+        va="bottom",
+        fontsize=9
+    )
+
+plt.tight_layout()
+plt.savefig("inflation_rates.png", dpi=300)
+plt.show()
